@@ -72,12 +72,26 @@ namespace ForceShake
             //switch off bluetooth then on again
             if (device.Address == deviceMac)
             {
-                BluetoothAdapter.DefaultAdapter.Disable();
-                System.Threading.Thread.Sleep(2000);
-                BluetoothAdapter.DefaultAdapter.Enable();
-                BluetoothAdapter.DefaultAdapter.StartDiscovery();
+                //BluetoothAdapter.DefaultAdapter.Disable();
+                //System.Threading.Thread.Sleep(2000);
+                //BluetoothAdapter.DefaultAdapter.Enable();
+                try
+                {
+                    var createBond = typeof(BluetoothDevice).GetMethod("CreateBond");
+                    createBond.Invoke(device, new object[] { });
 
-                return;
+                    var setPin = typeof(BluetoothDevice).GetMethod("SetPin");
+                    setPin.Invoke(device, new object[] { Encoding.UTF8.GetBytes("0000") });
+
+                    var setPairingConfirmation = typeof(BluetoothDevice).GetMethod("SetPairingConfirmation");
+                    setPairingConfirmation.Invoke(device, new object[] { true });
+                }
+
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                
             }
 
 
