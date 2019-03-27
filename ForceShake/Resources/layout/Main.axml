@@ -4,5 +4,57 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff" >
+    android:background="#eee" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:background="#fff"
+        android:padding="10dp"
+        android:radius="10dp"
+        android:elevation="5dp">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout1">
+            <TextView
+                android:text="Devices"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="0dp"
+                android:layout_weight="8"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textColor="#000"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:id="@+id/txtSearchTitle" />
+            <ProgressBar
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:padding="5dp"
+                android:layout_height="match_parent"
+                android:progressTint="#000"
+                android:id="@+id/scanSpinner" />
+        </LinearLayout>
+        <ListView
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:id="@+id/deviceListView"/>
+    </LinearLayout>
+    <TextView
+        android:text="Saved Device: "
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:layout_margin="5dp"
+        android:id="@+id/savedDevice" />
 </LinearLayout>

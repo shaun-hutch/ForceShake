@@ -7,6 +7,8 @@ using Android.Support.V4.Content;
 using Android.Content.PM;
 using Android.Support.V4.App;
 using Android.Runtime;
+using System.Collections.Generic;
+using System;
 
 namespace ForceShake
 {
@@ -14,24 +16,47 @@ namespace ForceShake
     public class MainActivity : Activity
     {
         private BluetoothReceiver receiver;
+        private BluetoothListViewAdapter adapter;
+        private ListView deviceListView;
+        private ProgressBar scanSpinner;
+        private TextView savedDevice;
         const int LOCATION_REQUEST_CODE = 9001;
+
+        ISharedPreferences prefs;
+        ISharedPreferencesEditor editor;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
+            deviceListView = FindViewById<ListView>(Resource.Id.deviceListView);
+            scanSpinner = FindViewById<ProgressBar>(Resource.Id.scanSpinner);
+            savedDevice = FindViewById<TextView>(Resource.Id.savedDevice);
+            adapter = new BluetoothListViewAdapter(this);
+            deviceListView.Adapter = adapter;
+            deviceListView.ItemClick += DeviceListView_ItemClick;
+            prefs = GetSharedPreferences("settings", FileCreationMode.Private);
+            editor = prefs.Edit();
+            string macAddress = prefs.GetString("device", "");
+            string name = prefs.GetString("name", "");
+            savedDevice.Text = string.IsNullOrWhiteSpace(macAddress) ? "No device set" : $"Device: {name} - {macAddress}";
+        }
 
-
-
+        private void DeviceListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            //save the bluetooth device, then if found on scan, switch bluetooth off and on again
+            BluetoothDevice device = Device.Devices[e.Position];
+            editor.PutString("device", device.Address);
+            editor.PutString("name", device.Name);
+            editor.Apply();
+            savedDevice.Text = $"Device: {device.Name} - {device.Address}";
         }
 
         protected override void OnResume()
         {
             base.OnResume();
             CheckLocationPermissions();
-
+            
         }
 
         protected override void OnPause()
@@ -41,29 +66,44 @@ namespace ForceShake
             if (receiver != null)
             {
                 UnregisterReceiver(receiver);
+                StopScan();
                 Toast.MakeText(this, "Unregistered receiver.", ToastLength.Short).Show();
             }
         }
 
         private void StartBluetoothReciever()
         {
-            receiver = new BluetoothReceiver();
-            RegisterReceiver(receiver, new IntentFilter(BluetoothDevice.ActionFound));
-            ScanBluetoothDevices();
+            receiver = new BluetoothReceiver(adapter);
+            IntentFilter filter = new IntentFilter();
+            filter.AddAction(BluetoothDevice.ActionFound);
+            filter.AddAction(BluetoothAdapter.ActionDiscoveryStarted);
+            filter.AddAction(BluetoothAdapter.ActionDiscoveryFinished);
+            RegisterReceiver(receiver, filter);
+            StartScan();
 
             Toast.MakeText(this, "Registered receiver.", ToastLength.Short).Show();
-
-
         }
 
-        private void ScanBluetoothDevices()
+        private void StartScan()
+        {
+            BluetoothAdapter.DefaultAdapter.Enable();
+            if (BluetoothAdapter.DefaultAdapter != null && BluetoothAdapter.DefaultAdapter.IsEnabled)
+            {
+                BluetoothAdapter.DefaultAdapter.StartDiscovery();
+
+                Device.Devices.Clear();
+                IEnumerable<BluetoothDevice> devices = BluetoothAdapter.DefaultAdapter.BondedDevices;
+
+                Device.Devices.AddRange(devices);
+                adapter.NotifyDataSetChanged();
+            }
+        }
+
+        private void StopScan()
         {
             if (BluetoothAdapter.DefaultAdapter != null && BluetoothAdapter.DefaultAdapter.IsEnabled)
             {
-                if (BluetoothAdapter.DefaultAdapter.StartDiscovery())
-                {
-
-                }
+                BluetoothAdapter.DefaultAdapter.CancelDiscovery();
             }
         }
 
@@ -104,6 +144,16 @@ namespace ForceShake
                 }
             }
 
+        }
+
+        public void ShowSpinner()
+        {
+            scanSpinner.Visibility = Android.Views.ViewStates.Visible;
+        }
+
+        public void HideSpinner()
+        {
+            scanSpinner.Visibility = Android.Views.ViewStates.Gone;
         }
 
     }

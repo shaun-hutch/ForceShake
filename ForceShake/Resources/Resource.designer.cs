@@ -281,23 +281,23 @@ namespace ForceShake
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f090020
-			public const int action0 = 2131296288;
-			
-			// aapt resource value: 0x7f09001d
-			public const int action_container = 2131296285;
+			// aapt resource value: 0x7f090027
+			public const int action0 = 2131296295;
 			
 			// aapt resource value: 0x7f090024
-			public const int action_divider = 2131296292;
+			public const int action_container = 2131296292;
 			
-			// aapt resource value: 0x7f09001e
-			public const int action_image = 2131296286;
+			// aapt resource value: 0x7f09002b
+			public const int action_divider = 2131296299;
 			
-			// aapt resource value: 0x7f09001f
-			public const int action_text = 2131296287;
+			// aapt resource value: 0x7f090025
+			public const int action_image = 2131296293;
 			
-			// aapt resource value: 0x7f09002e
-			public const int actions = 2131296302;
+			// aapt resource value: 0x7f090026
+			public const int action_text = 2131296294;
+			
+			// aapt resource value: 0x7f090035
+			public const int actions = 2131296309;
 			
 			// aapt resource value: 0x7f090017
 			public const int all = 2131296279;
@@ -311,8 +311,8 @@ namespace ForceShake
 			// aapt resource value: 0x7f090008
 			public const int bottom = 2131296264;
 			
-			// aapt resource value: 0x7f090021
-			public const int cancel_action = 2131296289;
+			// aapt resource value: 0x7f090028
+			public const int cancel_action = 2131296296;
 			
 			// aapt resource value: 0x7f090009
 			public const int center = 2131296265;
@@ -323,8 +323,8 @@ namespace ForceShake
 			// aapt resource value: 0x7f09000b
 			public const int center_vertical = 2131296267;
 			
-			// aapt resource value: 0x7f090029
-			public const int chronometer = 2131296297;
+			// aapt resource value: 0x7f090030
+			public const int chronometer = 2131296304;
 			
 			// aapt resource value: 0x7f09000c
 			public const int clip_horizontal = 2131296268;
@@ -332,11 +332,14 @@ namespace ForceShake
 			// aapt resource value: 0x7f09000d
 			public const int clip_vertical = 2131296269;
 			
+			// aapt resource value: 0x7f090022
+			public const int deviceListView = 2131296290;
+			
 			// aapt resource value: 0x7f09000e
 			public const int end = 2131296270;
 			
-			// aapt resource value: 0x7f090030
-			public const int end_padder = 2131296304;
+			// aapt resource value: 0x7f090037
+			public const int end_padder = 2131296311;
 			
 			// aapt resource value: 0x7f09000f
 			public const int fill = 2131296271;
@@ -350,14 +353,14 @@ namespace ForceShake
 			// aapt resource value: 0x7f09001a
 			public const int forever = 2131296282;
 			
-			// aapt resource value: 0x7f09002b
-			public const int icon = 2131296299;
+			// aapt resource value: 0x7f090032
+			public const int icon = 2131296306;
 			
-			// aapt resource value: 0x7f09002f
-			public const int icon_group = 2131296303;
+			// aapt resource value: 0x7f090036
+			public const int icon_group = 2131296310;
 			
-			// aapt resource value: 0x7f09002a
-			public const int info = 2131296298;
+			// aapt resource value: 0x7f090031
+			public const int info = 2131296305;
 			
 			// aapt resource value: 0x7f09001b
 			public const int italic = 2131296283;
@@ -371,8 +374,11 @@ namespace ForceShake
 			// aapt resource value: 0x7f090001
 			public const int line3 = 2131296257;
 			
-			// aapt resource value: 0x7f090023
-			public const int media_actions = 2131296291;
+			// aapt resource value: 0x7f09001f
+			public const int linearLayout1 = 2131296287;
+			
+			// aapt resource value: 0x7f09002a
+			public const int media_actions = 2131296298;
 			
 			// aapt resource value: 0x7f090016
 			public const int none = 2131296278;
@@ -380,29 +386,35 @@ namespace ForceShake
 			// aapt resource value: 0x7f09001c
 			public const int normal = 2131296284;
 			
+			// aapt resource value: 0x7f090034
+			public const int notification_background = 2131296308;
+			
 			// aapt resource value: 0x7f09002d
-			public const int notification_background = 2131296301;
+			public const int notification_main_column = 2131296301;
 			
-			// aapt resource value: 0x7f090026
-			public const int notification_main_column = 2131296294;
-			
-			// aapt resource value: 0x7f090025
-			public const int notification_main_column_container = 2131296293;
+			// aapt resource value: 0x7f09002c
+			public const int notification_main_column_container = 2131296300;
 			
 			// aapt resource value: 0x7f090013
 			public const int right = 2131296275;
 			
-			// aapt resource value: 0x7f09002c
-			public const int right_icon = 2131296300;
+			// aapt resource value: 0x7f090033
+			public const int right_icon = 2131296307;
 			
-			// aapt resource value: 0x7f090027
-			public const int right_side = 2131296295;
+			// aapt resource value: 0x7f09002e
+			public const int right_side = 2131296302;
+			
+			// aapt resource value: 0x7f090023
+			public const int savedDevice = 2131296291;
+			
+			// aapt resource value: 0x7f090021
+			public const int scanSpinner = 2131296289;
 			
 			// aapt resource value: 0x7f090014
 			public const int start = 2131296276;
 			
-			// aapt resource value: 0x7f090022
-			public const int status_bar_latest_event_content = 2131296290;
+			// aapt resource value: 0x7f090029
+			public const int status_bar_latest_event_content = 2131296297;
 			
 			// aapt resource value: 0x7f090002
 			public const int tag_transition_group = 2131296258;
@@ -419,14 +431,23 @@ namespace ForceShake
 			// aapt resource value: 0x7f090006
 			public const int text2 = 2131296262;
 			
-			// aapt resource value: 0x7f090028
-			public const int time = 2131296296;
+			// aapt resource value: 0x7f09002f
+			public const int time = 2131296303;
 			
 			// aapt resource value: 0x7f090007
 			public const int title = 2131296263;
 			
 			// aapt resource value: 0x7f090015
 			public const int top = 2131296277;
+			
+			// aapt resource value: 0x7f09001d
+			public const int txtDeviceTitle = 2131296285;
+			
+			// aapt resource value: 0x7f09001e
+			public const int txtMacAddress = 2131296286;
+			
+			// aapt resource value: 0x7f090020
+			public const int txtSearchTitle = 2131296288;
 			
 			static Id()
 			{
